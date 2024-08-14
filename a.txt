@@ -1,0 +1,16 @@
+def find_next_scale(scales):
+    today = datetime.now()
+    upcoming_scales = []
+
+    for scale in scales:
+        scale_date = datetime.strptime(scale['data'], "%d/%m/%Y")  # Ajuste o formato da data se necessário
+        if scale_date >= today:
+            upcoming_scales.append(scale)
+
+    if not upcoming_scales:
+        return None  # Nenhuma escala futura encontrada
+
+    next_scale = min(upcoming_scales, key=lambda x: datetime.strptime(x['data'], "%d/%m/%Y"))
+    time_remaining = (datetime.strptime(next_scale['data'], "%d/%m/%Y") - today).days
+
+    return next_scale, time_remaining
