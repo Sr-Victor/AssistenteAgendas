@@ -4,6 +4,8 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from google_auth_oauthlib.flow import InstalledAppFlow
+
 import pyttsx3 as sx
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 SAMPLE_SPREADSHEET_ID = "1SjRO_pxgDIq25SZhdIq0wBZb4CQZdvuDLBzJfs-n0Y4"
@@ -18,17 +20,17 @@ def speak(text):
 
 def get_data():
     creds = None
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if os.path.exists("FEATURES/token.json"):
+        creds = Credentials.from_authorized_user_file("FEATURES/token.json", SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                "credentials.json", SCOPES
+                "FEATURES/credentials.json", SCOPES
             )
             creds = flow.run_local_server(port=0)
-        with open("token.json", "w") as token:
+        with open("FEATURES/token.json", "w") as token:
             token.write(creds.to_json())
 
     try:
