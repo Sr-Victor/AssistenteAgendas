@@ -1,6 +1,8 @@
 import os.path
 from datetime import datetime
-from google.auth.transport.requests import Request
+import os.path
+from datetime import datetime
+from google.auth.transport.requests import Request  # Certifique-se de que esta linha está correta
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
