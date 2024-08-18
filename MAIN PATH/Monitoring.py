@@ -5,7 +5,8 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from google_auth_oauthlib.flow import InstalledAppFlow
-
+import json
+from flask import *
 import pyttsx3 as sx
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 SAMPLE_SPREADSHEET_ID = "1SjRO_pxgDIq25SZhdIq0wBZb4CQZdvuDLBzJfs-n0Y4"
@@ -60,6 +61,15 @@ def get_data():
     except HttpError as err:
         print(err)
         return []
+# Envia os dados para uma API Json
+def send_to_api(data):
+    app = Flask(__name__)
+    @app.route('/')
+    def index():
+        return json.dumps({'name': 'alice',
+                        'email': 'alice@outlook.com'})
+    app.run()
+
 
 def find_next_scale(scales):
     today = datetime.now()
@@ -105,6 +115,8 @@ def main():
         speak(f"Faltam {time_remaining} dias para a próxima escala.")
     else:
         speak("\nNenhuma escala futura encontrada.")
+    datas = f"Data: {entry['data']}, Equipe: {entry['equipe']}, Culto: {entry['culto']}"
+    send_to_api(datas)
 
 if __name__ == "__main__":
     main()
