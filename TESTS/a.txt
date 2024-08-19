@@ -1,16 +1,1 @@
-def find_next_scale(scales):
-    today = datetime.now()
-    upcoming_scales = []
-
-    for scale in scales:
-        scale_date = datetime.strptime(scale['data'], "%d/%m/%Y")  # Ajuste o formato da data se necessário
-        if scale_date >= today:
-            upcoming_scales.append(scale)
-
-    if not upcoming_scales:
-        return None  # Nenhuma escala futura encontrada
-
-    next_scale = min(upcoming_scales, key=lambda x: datetime.strptime(x['data'], "%d/%m/%Y"))
-    time_remaining = (datetime.strptime(next_scale['data'], "%d/%m/%Y") - today).days
-
-    return next_scale, time_remaining
+(['Átrio', {'data': '02/08/2024', 'equipe': 'Átrio Music ', 'culto': 'RETIRO ÁTRIO'}, {'data': '16/08/2024', 'equipe': 'Átrio Music ', 'culto': 'Pós Camp'}, {'data': '27/08/2024', 'equipe': 'Átrio Music ', 'culto': 'Culto de ensino ADS'}], ['Connect', {'data': '03/08/2024', 'equipe': 'Connect & Alec Bruno', 'culto': 'RETIRO ÁTRIO'}, {'data': '16/08/2024', 'equipe': 'Connect ', 'culto': 'Ads qd 07'}, {'data': '30/08/2024', 'equipe': 'Connect', 'culto': 'Átrio home'}])

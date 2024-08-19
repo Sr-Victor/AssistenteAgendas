@@ -224,21 +224,55 @@ if __name__ == "__main__":
 - Este bloco garante que o código seja executado apenas se o script for executado diretamente.
 
 ---
-
-## **Conclusão**
-
-Este projeto fornece uma solução simples e eficaz para gerenciar e monitorar as escalas do ministério de louvor diretamente no terminal. A ferramenta utiliza Python para acessar dados em tempo real do Google Sheets e comunica as informações de forma clara e acessível.
+Aqui está a documentação para a nova parte do código que você implementou:
 
 ---
 
-## **Futuras Melhorias**
+### Documentação da Nova Funcionalidade
 
-- **Interface Gráfica**: Implementar uma interface gráfica para visualização e interação mais amigável.
-- **Integração com o Google Calendar**: Adicionar a funcionalidade para sincronizar automaticamente as escalas com o Google Calendar.
-- **Notificações**: Incluir alertas via e-mail ou notificações móveis para avisar sobre escalas futuras.
+#### Função `get_data()`
+- **Objetivo**: Extrair dados das escalas das equipes "Átrio Music" e "Connect" da planilha do Google Sheets.
+- **Descrição**: Esta função se conecta ao Google Sheets utilizando as credenciais armazenadas, busca as escalas nas faixas especificadas e separa os dados de acordo com a equipe.
+- **Entrada**: Nenhuma entrada direta.
+- **Saída**: Retorna um dicionário contendo as escalas das equipes "Átrio Music" e "Connect" em listas separadas.
+
+#### Função `add_event_to_calendar(event_data, equipe)`
+- **Objetivo**: Adicionar eventos da escala ao Google Calendar.
+- **Descrição**: Baseada nos dados da próxima escala, esta função cria um evento no Google Calendar e envia convites para os participantes da equipe correspondente.
+- **Parâmetros**:
+  - `event_data`: Lista contendo as informações da escala que deve ser adicionada ao calendário.
+  - `equipe`: Nome da equipe ("Átrio Music" ou "Connect") para determinar os participantes a serem notificados.
+- **Saída**: Cria um evento no Google Calendar e imprime o link do evento.
+
+#### Função `find_next_scale(scales)`
+- **Objetivo**: Identificar a próxima escala, filtrando as escalas antigas.
+- **Descrição**: Esta função percorre as escalas e retorna a próxima escala futura, ignorando escalas que já passaram.
+- **Parâmetro**:
+  - `scales`: Lista de escalas para uma equipe específica.
+- **Saída**: Retorna um dicionário com os dados da próxima escala.
+
+#### Função `main()`
+- **Objetivo**: Controlar o fluxo principal de execução do programa.
+- **Descrição**: Esta função executa o processo principal de:
+  1. Obter os dados das escalas;
+  2. Identificar a próxima escala para cada equipe;
+  3. Adicionar a escala ao Google Calendar;
+  4. Notificar os participantes via email.
+- **Entrada**: Nenhuma entrada direta.
+- **Saída**: Executa a lógica principal do programa e chama as funções responsáveis por adicionar eventos ao calendário.
+
+### Fluxo de Execução
+1. **Obtenção de Dados**: A função `get_data()` é chamada para buscar e organizar as escalas.
+2. **Identificação da Próxima Escala**: A função `find_next_scale()` é utilizada para encontrar a próxima escala, ignorando as que já passaram.
+3. **Adição ao Calendário**: A função `add_event_to_calendar()` é chamada para adicionar a escala ao Google Calendar e notificar os participantes via email.
+4. **Notificação**: O programa utiliza o `pyttsx3` para fornecer feedback verbal sobre a criação da agenda.
+
+### Considerações Importantes
+- **Emails dos Participantes**: Os emails devem ser corretamente ajustados nas seções correspondentes da função `add_event_to_calendar()` para cada equipe.
+- **Formato de Data**: As datas são formatadas de acordo com o padrão "%d/%m/%Y" para compatibilidade com o Google Calendar.
+- **Validação das Credenciais**: O código verifica se as credenciais estão válidas antes de acessar o Google Sheets e o Google Calendar.
+
+### Exemplo de Uso
+- Ao rodar o `main()`, o sistema buscará as escalas mais recentes para cada equipe e adicionará a próxima ao Google Calendar. Se houver um erro ao acessar os dados ou adicionar o evento, ele será capturado e exibido.
 
 ---
-
-**Autor:** [Seu Nome]  
-**Contato:** [Seu E-mail]  
-**Data:** [Data de Criação]
