@@ -1,3 +1,5 @@
+# Para diminuir o seu processo de leituro: Este código ele checa se você possui alguma escala hoje.
+
 import os.path
 from datetime import datetime
 from google.auth.transport.requests import Request

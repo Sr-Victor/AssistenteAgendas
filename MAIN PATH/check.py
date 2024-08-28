@@ -1,3 +1,6 @@
+# Para diminuir o seu processo de leituro: Este código ele checa se você possui alguma agenda hoje.
+
+
 import datetime
 import os.path
 from Monitoring import speak
