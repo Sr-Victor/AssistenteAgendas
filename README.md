@@ -12,7 +12,7 @@ Este projeto tem como objetivo criar uma ferramenta de assistente de agenda para
 
 ### **1. Requisitos**
 
-Antes de começar, você precisa garantir que o Python esteja instalado em sua máquina. Este projeto foi desenvolvido e testado com Python 3.10, mas versões anteriores (Python 3.x) também devem funcionar.
+Antes de começar, você precisa garantir que o Python esteja instalado em sua máquina. Este projeto foi desenvolvido e testado com Python 3.10.
 
 ### **2. Clonando o Repositório**
 
@@ -28,13 +28,6 @@ Navegue até o diretório do projeto e instale as dependências necessárias uti
 cd assistente-de-agenda
 pip install -r requirements.txt
 ```
-
-O arquivo `requirements.txt` deve conter as seguintes bibliotecas:
-- `google-auth`
-- `google-auth-oauthlib`
-- `google-auth-httplib2`
-- `google-api-python-client`
-- `pyttsx3`
 
 ### **4. Configuração das Credenciais do Google Sheets**
 
@@ -64,8 +57,8 @@ Isso abrirá uma janela de navegador solicitando que você faça login na sua co
 assistente-de-agenda/
 │
 ├── Monitoring.py        # Arquivo principal do projeto
-├── credentials.json     # Credenciais de acesso ao Google API
-└── token.json           # Token de autenticação (gerado automaticamente)
+├── /FEATURES/PATH/credentials.json   # Credenciais de acesso ao Google API
+└── /FEATURES/PATH/token.json           # Token de autenticação (gerado automaticamente)
 ```
 
 ### **Monitoring.py**
@@ -83,12 +76,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import pyttsx3 as sx
 ```
-
-- **`os.path`**: Para manipulação de caminhos e verificação da existência de arquivos.
-- **`datetime`**: Para manipulação e comparação de datas.
-- **`google.auth` e `googleapiclient`**: Para autenticação e acesso ao Google Sheets.
-- **`pyttsx3`**: Para síntese de voz.
-
 ### **Constantes**
 
 ```python
@@ -100,17 +87,6 @@ RANGES = ["Átrio ' 24 | Escala!A1:C44"]
 - **`SCOPES`**: Define o escopo de acesso à API do Google Sheets, limitado à leitura.
 - **`SAMPLE_SPREADSHEET_ID`**: ID da planilha a ser acessada.
 - **`RANGES`**: Intervalo de células na planilha que contém as escalas do ministério.
-
-### **Função `speak`**
-
-```python
-def speak(text):
-    a = sx.init()
-    a.say(text)
-    a.runAndWait()
-```
-
-- **`speak`**: Utiliza o módulo `pyttsx3` para sintetizar e pronunciar o texto passado como argumento.
 
 ### **Função `get_data`**
 
@@ -214,16 +190,6 @@ def main():
 
 - **`main`**: Integra as funções anteriores para obter os dados, identificar a próxima escala e fornecer feedback via console e síntese de voz.
 
-### **Execução do Programa**
-
-```python
-if __name__ == "__main__":
-    main()
-```
-
-- Este bloco garante que o código seja executado apenas se o script for executado diretamente.
-
----
 Aqui está a documentação para a nova parte do código que você implementou:
 
 ---
@@ -231,7 +197,7 @@ Aqui está a documentação para a nova parte do código que você implementou:
 ### Documentação da Nova Funcionalidade
 
 #### Função `get_data()`
-- **Objetivo**: Extrair dados das escalas das equipes "Átrio Music" e "Connect" da planilha do Google Sheets.
+- **Objetivo**: Extrair dados das escalas das equipes "NOME DA EQUIPE" da planilha do Google Sheets.
 - **Descrição**: Esta função se conecta ao Google Sheets utilizando as credenciais armazenadas, busca as escalas nas faixas especificadas e separa os dados de acordo com a equipe.
 - **Entrada**: Nenhuma entrada direta.
 - **Saída**: Retorna um dicionário contendo as escalas das equipes "Átrio Music" e "Connect" em listas separadas.
